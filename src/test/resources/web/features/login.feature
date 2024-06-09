@@ -1,6 +1,5 @@
 
 Feature: Login
-
   Scenario: login successfully
     Given the client is on the login page
     When click on Log in manually

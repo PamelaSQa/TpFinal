@@ -13,42 +13,39 @@ public class WorkspaceSteps extends PageSteps {
 
     @Given("the user is logged in with valid email and password")
     public void loginSuccesfully(){
-        navegarWeb();
+        navigateWeb();
         clickTextLogin();
         sendLoginCredential();
         clickButtonLogin();
-        clickAlert();
     }
 
-
-    @And("hace click en workspace")
-    public void haceClickEnWorkspace() {
+    @And("click on workspace")
+    public void clickOnWorkspace() {
         clickButtonWorkspace();
     }
 
-    @And("hace click gestionar")
-    public void haceClickGestionar() {
+    @And("click manage")
+    public void clickManage() {
         clickButtonManage();
     }
 
-    @And("hace click crear nuevo espacio de trabajo")
-    public void haceClickCrearNuevoEspacioDeTrabajo() {
+    @And("click create new workspace")
+    public void clickCreateNewWorkspace() {
         buttonCreateNewWorkspace();
     }
 
-    @And("ingresa un nombre al workpace")
-    public void ingresaUnNombreAlWorkpace() {
+    @And("enter a name for the workspace")
+    public void enterANameForTheWorkspace() {
         sendNameWorkspaceRandom();
     }
 
-
-    @When("hace click en el button crear")
-    public void haceClickEnCrear()  {
+    @When("click on the create button")
+    public void clickOnTheCreateButton()  {
         clickButtonCreate();
     }
 
-    @Then("se visualiza el nuevo workspace en el espacio de trabajo")
-    public void seVisualizaElNuevoWorkspaceEnElEspacioDeTrabajo() {
+    @Then("the new workspace is displayed in the workspace")
+    public void theNewWorkspaceIsDisplayedInTheWorkspace() {
         validateWorkspaceCreation();
         deleteWorkspace();
     }

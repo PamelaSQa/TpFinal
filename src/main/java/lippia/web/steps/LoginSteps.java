@@ -14,7 +14,7 @@ public class LoginSteps extends PageSteps {
 
     @Given("^the client is on the login page$")
     public void home(){
-        navegarWeb();
+        navigateWeb();
     }
 
     @When("click on Log in manually")
@@ -27,9 +27,9 @@ public class LoginSteps extends PageSteps {
         clickButtonLogin();
     }
 
-    @Then("the user view the main dashboard")
+    @And("the user view the main dashboard")
     public void validateMainDashboard(){
-        clickAlert();
+        //    clickAlert();
         validateMainPage();
     }
 

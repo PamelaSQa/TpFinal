@@ -8,6 +8,6 @@ public class WorkspaceResultService extends ActionManager {
 
     public static void validateWorkspaceCreation() {
         Assert.assertTrue(getText(ALERT_CONFIRM_CREATE_WORSKSPACE).contains("Se ha creado el espacio de trabajo"));
-   }
+    }
 
 }

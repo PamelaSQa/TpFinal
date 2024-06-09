@@ -12,7 +12,7 @@ Feature: Timetracker
     Examples:
       | email                    | pass        | start-time | end-time | date       |
       | pamela.s.qa@gmail.com    | pruebas2024 | 09:00      | 11:00    | 08/06/2024 |
-      | pamela.s.qa@gmail.com:30 | pruebas2024 | 18:30       | 12:30    | 08/06/2024 |
+      | pamela.s.qa@gmail.com:30 | pruebas2024 | 18:30      | 12:30    | 08/06/2024 |
 
 
   Scenario Outline: Cancel add hours in a project
@@ -27,9 +27,8 @@ Feature: Timetracker
     And click on DISCARD for confirmation
     Then time is not add to list
     Examples:
-      | email                    | pass        |
-      | pamela.s.qa@gmail.com    | pruebas2024 |
-      | pamela.s.qa@gmail.com:30 | pruebas2024 |
+      | email                 | pass        |
+      | pamela.s.qa@gmail.com | pruebas2024 |
 
   Scenario Outline: Modify existing entry
     Given the client is on the login page https://app.clockify.me/en/login

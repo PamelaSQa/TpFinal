@@ -8,7 +8,7 @@ import static lippia.web.services.WorkspaceService.generateRandomName;
 public class ProjectService extends ActionManager {
 
     public static void clickOnTheIconPlus(){
-    click(ICON_PLUS);
+        click(ICON_PLUS);
     }
     public static void clickOptionCreateNewProject(){
         click(TEXT_CREATE_NEW_PROJECT);
@@ -23,7 +23,7 @@ public class ProjectService extends ActionManager {
     }
 
     public static void selectDesplegableList(){
-        click(ICON_LIST_DESPLEGABLE);
+        click(ICON_LIST_DROPDOWN);
     }
 
     public static void closeAlert(){
@@ -35,8 +35,8 @@ public class ProjectService extends ActionManager {
         click(ICON_MENU_HAMBURGUER);
     }
     public static void clickArchiveProject(){
-        click(OPTION_ARCHIVAR);
-        click(POP_UP_BUTTON_ARCHIVAR);
+        click(OPTION_ARCHIVE);
+        click(POP_UP_BUTTON_ARCHIVE);
         closeAlert();
     }
 
