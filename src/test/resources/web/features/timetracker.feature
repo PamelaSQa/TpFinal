@@ -11,8 +11,8 @@ Feature: Timetracker
     Then new time is added to list of this week
     Examples:
       | email                    | pass        | start-time | end-time | date       |
-      | pamela.s.qa@gmail.com    | pruebas2024 | 10:00      | 11:00    | 08/06/2024 |
-      | pamela.s.qa@gmail.com:30 | pruebas2024 | 11:30      | 12:30    | 08/06/2024 |
+      | pamela.s.qa@gmail.com    | pruebas2024 | 09:00      | 11:00    | 08/06/2024 |
+      | pamela.s.qa@gmail.com:30 | pruebas2024 | 18:30       | 12:30    | 08/06/2024 |
 
 
   Scenario Outline: Cancel add hours in a project
