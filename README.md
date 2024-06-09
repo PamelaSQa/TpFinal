@@ -1,414 +1,103 @@
-# Lippia Web sample project
+# Lippia API Lowcode v1.0 @_Unreleased_
 
-<!--## Architecture
+[![Crowdar Official Page](https://img.shields.io/badge/crowdar-official%20page-brightgreen)](https://crowdar.com.ar/)
+[![Lippia Official Page](https://img.shields.io/badge/lippia-official%20page-brightgreen)](https://www.lippia.io/)
+<!-- [![Maven Central](https://img.shields.io/badge/maven%20central-3.2.3.8-blue)](https://search.maven.org/artifact/io.lippia/core/3.2.3.8/jar) -->
 
-![Lippia Architecture Web](docs/img/architecture_web_lippia.png)
+#### **Lippia AC** is a core level extension that allows us to automate api tests without the need to write code
 
-- Through Spring rest client, Lippia supports web tests, being able to reuse definitions from other tests as well as including this behavior in tests of other types such as mobile, API, etc.
+## Requirements
 
-- We believe that the best approach to automate testing from conception to deployment is to use BDD (Behaviour Driven Development) to include not just Developers, but Testers and Business Analysts, and that is why...   
++ **JDK** [Download](https://www.oracle.com/java/technologies/downloads/#java8-windows)
++ **Maven** [Download](https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip)
++ **Git
+  Client** [Download](https://github.com/git-for-windows/git/releases/download/v2.38.1.windows.1/Git-2.38.1-64-bit.exe)
 
-The scenarios can be written using BDD methodology. 
-    
-    Given as a precondition
-    
-    When as actions
-    
-    Then as validations
-    
-    
-On each declared step you can insert the calls defined from service classes -->
+## Getting Started
 
-## System Requirements: 
-+ jdk: https://docs.oracle.com/en/java/javase/index.html 
-+ maven: https://maven.apache.org/download.cgi 
-+ git client: https://www.atlassian.com/git/tutorials/install-git 
-+ docker 18.09+: https://docs.docker.com/install/linux/docker-ce/ubuntu/  _OPTIONAL_ 
-+ docker compose 1.24+: https://docs.docker.com/compose/install/ _OPTIONAL_ 
-
-
-"This project is licensed under the terms of the MIT license."
-
-# Update Version Lippia 3
-
-## Main Features: 
-- Added multiple reports of extent reports
-- Added the feature to handle the chrome options by a json file
-- Include project type properties that allows to decide which library would need for the project
-- Added the dependency for lippia report server 
-- Cucumber version updated
-
-
-# Getting started
-
-This project has the intention of showing a way practically how to use Lippia Automation Framework to build automated tests by using Gherkin and Page-Object Model pattern.  
-This sample project includes the required components as binaries, docker containers and configuration files to simply download and run a set of sample tests in your local computer, using the Lippia container stack described bellow.
-
-
-- ## Running with Maven
-
-  + ### First Step
-
-    + Download and unzip the source repository for this guide, or clone it using Git:   
-    ```
-    $ git clone https://gitlab.com/lippia/products/samples/lippia-web-sample-project.git
-    ```
-
-    + Go to root directory:   
-    ```
-    $ cd lippia-web-sample-project
-    ```   
-
-  + ### Second Step
-
-    If you want to run tests locally, you need maven as a minimum requirement   
-    + Make sure you have installed maven correctly   
-
-    ```
-    $ mvn --version
-
-      OUTPUT:
-        Apache Maven 3.8.2 (ea98e05a04480131370aa0c110b8c54cf726c06f)
-        Maven home: /opt/apache-maven-3.8.2
-        Java version: 13.0.5.1, vendor: Debian, runtime: /usr/lib/jvm/java-13-openjdk-amd64
-        Default locale: en_US, platform encoding: UTF-8
-        OS name: "linux", version: "5.10.0-6parrot1-amd64", arch: "amd64", family: "unix"
-    ```
-
-    If you don't see a similar output:
-    + Make sure you have the maven path configured   
-    #### Linux user
-    ```
-    $ grep -Ew '(.*)(M2_HOME)' ~/.bashrc
-
-      OUTPUT:
-        M2_HOME=/opt/apache-maven-3.8.2
-        PATH=$PATH:$M2_HOME/bin
-    ```   
-    #### Windows user
-    ```
-    $ set
-
-      OUTPUT:
-        M2_HOME=C:\Program Files\apache-maven-3.8.2
-        PATH=%PATH%;%M2_HOME%\bin;
-    ```
-
-  + ### Third Step
-
-    + To run the tests with maven, we must execute the following command:   
-
-    ```
-    $ mvn clean test
-    ```
-
-- ## Running with Docker
-
-    ## Docker stack
-
-    The following project includes the basic Docker Lippia Containers to run this Web sample project. You can choose the code from your favourite IDE, to run from console or from Jenkins by using the Docker Stack.
-
-    Note that if you don't have installed docker & docker-compose, [Click here](#system-requirements)
-
-    + ### First Step
-      - Make sure you have installed docker-engine correctly   
-      ```
-      $ docker --version
-        OUTPUT:
-          Docker version 19.03.15, build 99e3ed8919
-      ```   
-    
-    + ### Second Step
-      - Make sure you have installed docker-compose correctly
-      ```
-      $ docker-compose --version
-        OUTPUT:
-          docker-compose version 1.29.2, build 5becea4c
-      ```   
-
-    + ### Third Step   
-        #### Execute tests in you local machine   
-        
-        - Go to root project folder and you will find a pom.xml file   
-        ```
-        $ cd lippia-web-sample-project
-        ```   
-        
-        - Run the following command: 
-
-        In case the command "**sudo**" is not used in Windows.
-
-        ```
-        $ sudo docker-compose up --abort-on-container-exit --exit-code-from lippia_zalenium
-
-          OUTPUT:
-            Creating network "lippia-web-sample-project_default" with the default driver
-            Creating lippia-web-sample-project_zalenium_1 ... done
-            Creating lippia-web-sample-project_lippia_zalenium_1 ... done
-            Attaching to lippia-web-sample-project_zalenium_1, lippia-web-sample-project_lippia_zalenium_1
-            ...
-        ```   
-    
-
-# Reports[](url)
-
-We believe that the reports should express the results of our tests in the most legible, detailed and pleasant way possible, so that in this way, our clients have at their disposal a report on the operation and behavior of their product, as well as the performance of the team. That is why Lippia, in addition to supporting the integration with **ExtentReport**, provides a **ReportServer** for each client.   
-Next, we will see the structure of the project and from where we can access them.
-
-### Reports are generated in the folder called **target**, which will be generated once the execution of the test suite is finished.   
-Note that the following structure is part of the report generated with ExtentReport library.
-```
-├── lippia-web-sample-project
-|   ├── docs
-|   |   └── ...
-|   ├── src
-|   |   └── ...
-│   ├── target
-│   |   └── reports
-|   |       └── index.html
-|   └── ...
-```
-
-<!--
-### Graphic example 
-```
-~@ignore for now
-```  
-![ExtentReport example](docs/images/extentReportExample.png)
--->
-
-## Multiple reports templates:
- - With this version of Lippia the user has the possibility to choose which kind of template for html reports is the best for the project requirements.
-   The user only needs to turn on the flag in the extent.properties file located in src/test/resources.
-   
-   
-### Some examples of this are
-   
-#### Avenstack template:   
-   ![aventstack_report](docs/images/aventstack_report.png)
-   
-#### BDD template:   
-   ![bbd_report](docs/images/bbd_report.png)
-   
-#### Cards template:   
-   ![cards_report](docs/images/cards_report.png)
-
-
-
-## Project structure
-
-A typical Lippia Test Automation project usually looks like this 
+```bash
+$ git clone https://github.com/Crowdar/lippia-low-code-sample-project.git && cd "$(basename "$_" .git)"
 
 ```
-  .
-├── main
-│     ├── java
-│     │     └── lippia
-│     │           └──web
-│     │               ├── contants
-│     │               │       └── GoogleConstants
-│     │               ├── reporters 
-│     │               │       └──CucumberReporter
-│     │               ├── services        
-│     │               │       ├── GoogleHomeService
-│     │               │       └── GoogleSearchResultService
-│     │               └── steps     
-│     │                       └── GoogleSearchSteps
-│     └── resources
-│           └── browsers
-│                 ├── config.properties
-│                 ├── cucumber.properties
-│                 ├── extent.properties
-│                 └── log4j.properties
-├── test
-│     └── resources
-│             └── web
-│                   └──features
-│                         └── googleSearch.feature
+
+#### Once the project is cloned and opened with your preferred ide, we can run the tests with the following command
+
+```bash
+$  mvn clean test -Dcucumber.tags=@Sample -Denvironment=default
 ```
 
-
-Folder's description:
-
-|Path   |Description     |
-|-------|----------------|
-|main\java\\...\contants\\\*.java|Folder with all the **web elements' locators** matching steps with java code|
-|main\java\\...\services\\\*.java|Folder with all the **PageObjects** matching steps with java code|
-|main\java\\...\steps\\\*Steps.java|Folder with all the **steps** which match with Gherkin Test Scenarios |
-|test\resources\web.features\\\*.feature|Folder with all the **feature files** containing **Test Scenarios** and **Sample Data** |
-|main\resources|Folder with all configuration needed to run Lippia |
-
-In this example, *GoogleHomeService* is the first web page the framework will interact with. The **steps** defined in *GoogleSearchSteps* to execute the *Test Scenarios* defined in Gherkin language. 
-
-|File   | Description    |
-|-------|----------------|
-|GoogleConstants    | Constants : Define web elements' locators. And between each element in the webpage *GoogleHomeService & GoogleSearchResultService * you want to interact with. |
-|GoogleHomeService    | Define base URL to navigate. And between each element in the webpage *GoogleHomeService * you want to interact with. You need to add one new file for each page you want to navigate in your tests. |
-|GoogleSearchResultService.java   | Where making assertion and getting results.   |
-|GoogleSteps.java   | StepObject: Code to support the behaviour of each **step** coded into the feature files for the *GoogleHomeService & GoogleSearchResultService* web page. This code executes the interaction between the Framework and the web application, and match the steps with the code who run interactions. |
-|googleSearch.feature| Feature file: Definition of the **Test Scenarios** with all the **steps** written in Cucumber format (http)|
-
-## Constants
-***
-```
-public class GoogleConstants {
-
-    public static final String INPUT_SEARCH_XPATH = "xpath://input[@class='gLFyf gsfi']";
-    public static final String SEARCH_BUTTON_NAME = "name:btnK";
-    public static final String STATS_ID = "id:rcnt";
++ Additionally, other options are available for running the tests, as outlined in the following table:
+   ```
+   * -D is used to define system properties or command-line properties, which Maven will utilize during the project's building and/or execution process.
+   * Using -P followed by the profile name allows Maven to apply the configurations associated with that specific profile during the project's build process.
+   * -Pparallel: indicates the profile that enables the opening of multiple execution threads. 
+       
+   |                                   Command                                        |                        Description                         |
+   |----------------------------------------------------------------------------------|------------------------------------------------------------|
+   | -DforkCount=0 clean test                                                         | In case you need to debug, for use in the IDE runner       |
+   | mvn clean test -DforkCount=0  "-Dcucumber.tags=@Smoke" -Denvironment=dev         | Specifying a tag and including the debug option            |
+   | mvn clean test “-Dcucumber.tags=@Smoke” -Denvironment=dev#pais                   | Multi-environments and a subset of the chosen environment  |
+   | mvn clean test "-Dcucumber.tags='@Accounts and @Smoke'" -Denvironment=dev        | Multiple tags and environment enabled                      |
+   | mvn clean test "-Dcucumber.tags=@Sample" -Denvironment=dev -PParalelo            | Multiple execution threads                                 |
 
 
-}
-```
+## Contents
 
+1. [Variables](##Variables)    
+   I. [Define](#title_define)
+2. [Properties](../path/to/properties)   
+   I. [Lippia configuration file](#title_lippia_conf_file)   
+   II. [Basic properties file](../path/to/properties)
+3. [Requests](../path/to/requests)   
+   I. [Base URL](#title_base_url)   
+   II. [Endpoint](#title_endpoint)   
+   III. [Headers](#title_headers)   
+   IV. [Body](#title_body)   
+   V. [HTTP Method](#title_http_method)
+4. [Assertions](#title_assertions)   
+   I. [Status code](#title_status_code)
+   II. [JSON](##II.JSON)
+   III.[Schema](#title_schema)
+5. [Steps Glossary](#title_step_glosary)
 
-## Services
-***
-```
-public class GoogleHomeService extends ActionManager {
+## Variables
 
-    public static void navegarWeb(){
-        navigateTo(PropertyManager.getProperty("web.base.url"));
-    }
+### I. <a id="title_define"></a>Define
 
-    public static void enterSearchCriteria(String text) {
-        setInput(GoogleConstants.INPUT_SEARCH_XPATH, text);
-    }
+#### In order to define a variable and assign it with a constant value or a variable value use :
 
-    public static void clickSearchButton() {
-        click(GoogleConstants.SEARCH_BUTTON_NAME);
-    }
-}
+      * define [^\d]\S+ = \S+
+      * define codigo = 7000
 
-public class GoogleSearchResultService extends ActionManager {
+#### So that you need to call the previously defined variable, use double brackets :
 
-    private static WebElement stats() {
-        return getElement(GoogleConstants.STATS_ID);
-    }
+### For example
 
-    public static String getStats() {
-        return stats().getText();
-    }
+       Given body body_request_1700.json
+       * define codigo = 7000
+       When execute method POST
+       Then the status code should be 400
+       And response should be $.code = {{codigo}}
 
-    public static void verifyResults(){
-        Assert.assertFalse(getStats().isEmpty());
-    }
-}
+--------------------------------------------------------------
 
-```
+#### alternatively you could use the value obtained from a response :
 
+      Given body body_request_1700.json
+      When execute method POST
+      Then the status code should be 200
+      And response should be $.code = 7114
+      * define codigo = $.code
 
-## Step Object   
-***
-    
-```
-public class GoogleSearchSteps extends PageSteps {
+--------------------------------------------------------------
 
-    @Given("The client is in google page")
-    public void home() {
-        GoogleHomeService.navegarWeb();
-    }
+## <a id="title_lippia_conf_file"></a>Lippia Configuration file
 
-    @When("^The client search for word (.*)$")
-    public void search(String criteria) {
-        GoogleHomeService.enterSearchCriteria(criteria);
-        GoogleHomeService.clickSearchButton();
-    }
-
-    @Then("The client verify that results are shown properly")
-    public void statVerfication() {
-        GoogleSearchResultService.verifyResults();
-
-    }
-
-}
-```
-
-## Feature File
-***
-
-The Test Scenarios can be written using BDD metodology. This project includes Cucumber as BDD interpreter which is supported by Lippia by default. On each declared step you can insert the calls defined from service classes            
-    
-```
-Feature: As a potential client i need to search in google to find a web site
-
-  @Smoke
-  Scenario: The client search by "crowdar"
-    Given The client is in google page
-    When The client search for word crowdar
-    Then The client verify that results are shown properly
-
-  @Smoke
-  Scenario: The client search by "A utomation"
-    Given The client is in google page
-    When The client search for word Automation
-    Then The client verify that results are shown properly
-
-  @Smoke
-  Scenario: The client search by "Docker"
-    Given The client is in google page
-    When The client search for word Docker
-    Then The client verify that results are shown properly
-
-  @Smoke
-  Scenario: The client search by "Lippia"
-    Given The client is in google page
-    When The client search for word Lippia
-    Then The client verify that results are shown properly
-```
-
-## Chrome driver options file:   
- - Added the ability to set up the options for the chromedriver in order to have all of the properties setted. For example the user is allowed to set the headless value.
+### (lippia.config)
 
 ```
- {
-  "browserName": "chrome",
-  "goog:chromeOptions": {"args": ["disable-infobars", "--ignore-certificate-errors", "start-maximized"], 
-               "extensions": [],
-               "prefs": {"printing.enabled": false}
-  }, 
-  "platform": "ANY"
-} 
-```
-
-## Project type options:
-- The project type option allows the user to say Lippia which library would need to download. For this project is set the WEB_CHROME one that uses the library for this webdriver.
-  This option can be changed in the pom.xml file
-  You can get more information checking the readme from lippia-core project.
-  
-  ProjectTypes for web project:     
-
-  WEB_CHROME
-        crowdar.projectType=WEB_CHROME
-        crowdar.projectType.driverCapabilities.jsonFile=src/main/resources/browsers/chromeCapabilities.json
-        crowdar.setupStrategy=web.DownloadLatestStrategy
-
-  WEB_FIREFOX
-        crowdar.projectType=WEB_FIREFOX
-        crowdar.projectType.driverCapabilities.jsonFile=src/main/resources/browsers/firefoxCapabilities.json
-        crowdar.setupStrategy=web.DownloadLatestStrategy
-
-  WEB_EDGE
-        crowdar.projectType=WEB_EDGE
-        crowdar.projectType.driverCapabilities.jsonFile=src/main/resources/browsers/edgeCapabilities.json
-        crowdar.setupStrategy=web.DownloadLatestStrategy
-
-  WEB_IE
-        crowdar.projectType=WEB_IE
-        crowdar.projectType.driverCapabilities.jsonFile=src/main/resources/browsers/ieCapabilities.json
-        crowdar.setupStrategy=web.DownloadLatestStrategy
-
-  WEB_SAFARI
-        crowdar.projectType=WEB_SAFARI
-        crowdar.projectType.driverCapabilities.jsonFile=src/main/resources/browsers/safariCapabilities.json
-        crowdar.setupStrategy=web.DownloadLatestStrategy 
-
-## Runners
-***
-```
-├── lippia-web-sample-project
-│   ├── docs
-│   │   └── ...
+├── automation-reestructuracion-gateway
+│   │   
 │   ├── src
 │   │   ├── main
 │   ├── java
@@ -417,78 +106,263 @@ Feature: As a potential client i need to search in google to find a web site
 │   │     └── ...
 │   ├── test
 │   │     ├── resources
-│   │     │ └── ...
-│   │ 
-│   ├── pom.xml
-│   ├── testngParallel.xml
-│   ├── testngSecuencial.xml
-│          
-│  
+│   │     │   └── features
+│   │     │   └── files
+│   │     │   └── jsons
+│   │     │   |    └──bodies
+│   │     │   |    └── ...
+│   │     │   └── queries
+│   │     │   └── ...
+│   │     │   └── extent.properties
+│   │     │   └── lippia.conf
 ```
 
-
-The test cases are executed using **TestNG** class. This class is the main entry point for running tests in the TestNG framework. By creating their own TestNG object and invoke it on a testng.xml.
-
-|**Attribute** | **Description** | 
-|--------------|-----------------| 
-|name   | The name of this suite. It is a **mandatory** attribute. |  
-|verbose   | Whether TestNG should run different threads to run this suite. |  
-|parallel   | Whether TestNG should run different threads to run this suite. |
-|thread-count   | The number of threads to use, if parallel mode is enabled (ignored other-wise). |  
-|annotations   | The type of annotations you are using in your tests. |  
-|time-out   | The default timeout that will be used on all the test methods found in this test. |  
-
-### testngSecuencial.xml  
+#### In this file you can specify the base url of the different environments, such as development, integration or testing :
 
 ```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="10" parallel="tests" thread-count="1" configfailurepolicy="continue">
-    <test name="TestNg Secuencial runner Tests" annotations="JDK" preserve-order="true">
-        <classes>
-            <class name="com.crowdar.bdd.cukes.TestNGSecuencialRunner"/>
-        </classes>
-    </test>
-</suite>
+environments {
+    default {
+        "base.url" = "https://www.by.default.com"
+    }
 
+    dev {
+        "base.url" = "https://www.dev-by.default.com"
+    }
+
+    test {
+        "base.url" = "https://www.test-by.default.com"
+    }
+
+    prod {
+        "base.url" = "https://www.?by.default.com"
+    }
+}
 ```
 
-### testngParallel.xml  
+#### The environments can  be changed from the command line by referencing the respective environment by its name.
+
+### For example
+
+     -Denvironment=test
+
+## <a id="title_environment_manager"></a>Enviroment Manager
+
+#### To obtain data from the Environment manager we use the following method, in this case it is not allowed to obtain the base url
+
+      EnvironmentManager.getProperty("base.url")
+
+--------------------------------------------------------------
+
+## I.<a id="title_base_url"></a>Base URL
+
+#### The base url can be defined by the following step, it is simply to replace the regular expression /\+S by the url :
+
+### For example
+
+      base url \S+
+      Given base url https://rickandmortyapi.com/api/
+
+#### Alternatively we can use the following notation, if we have defined the url in the lippia.conf file
+
+| Version 3.3.0.0                          | Version 3.3.0.1 or newer                     |
+|:-----------------------------------------|:---------------------------------------------|
+| Given base url env.base_url_rickAndMorty | Given base url $(env.base_url_rickAndMorty)  |
+
+--------------------------------------------------------------
+
+## II.<a id="title_endpoint"></a>Endpoint
+
+#### You can easily replace the endpoint value in the regular expression of the "\S+" step :
+
+       endpoint \S+
+
+### For example
+
+      Given base url https://url-shortener-service.p.rapidapi.com
+      And endpoint shorten
+
+---------------------------------------------------------------------------------
+
+## III.<a id="title_headers"></a>Headers
+
+#### You can set a header just by defining the step and filling the key and the value as many times as you need to do it :
+
+      And header \S+ = \S+
+
+### For example
+
+      And header Content-Type = application/json
+      And header key = value
+
+---------------------------------------------------------------------------------
+
+## IV.<a id="title_body"></a>Body
 
 ```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="BDD Test Suite" verbose="1" parallel="methods" data-provider-thread-count="1" thread-count="1" configfailurepolicy="continue">
-    <test name="TestNg parellel runner Tests" annotations="JDK" preserve-order="true">
-        <classes>
-            <class name="com.crowdar.bdd.cukes.TestNGParallelRunner"/>
-        </classes>
-    </test>
-</suite>
+├── automation-reestructuracion-gateway
+│   │   
+│   ├── src
+│   │   ├── main
+│   ├── java
+│   │     └── ...
+│   ├── resources 
+│   │     └── ...
+│   ├── test
+│   │     ├── resources
+│   │     │   └── features
+│   │     │   └── files
+│   │     │   └── jsons
+│   │               └──bodies
+│   │               └── ...
+│        
 ```
 
-This file captures your entire testing and makes it easy to describe all your test suites and their parameters in one file, which you can check in your code repository or e-mail to coworkers.
+#### You can reference a json file created in the default location (jsons/bodies folder) : 
+####If the body doesn't need modification of any attribute or value, then this step is all that's required.
 
-### pom.xml
+      Given body \S+
 
-A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects. Examples for this is the build directory, which is target; the source directory, which is **src/main/java**; the test source directory, which is **src/test/resources**; and so on. When executing a task or goal, Maven looks for the POM in the current directory. It reads the POM, gets the needed configuration information, then executes the goal.
+### For example
 
-### How to select Sequential or Parallel Runner:
- 
-**Sequential Runner:**  
-    
-- In the pom.xml file, it looks for the POM in the current directory and assign the value of "testngSecuencial.xml".  
-    
-- This would be as follows:
-```  
-        <runner>testngSecuencial.xml</runner>
-```         
+| Version 3.3.0.0                        | Version 3.3.0.1 or newer                           |
+|:---------------------------------------|:---------------------------------------------------|
+| Given body name_file.json              | Given body jsons/bodies/name_file.json             |
 
-**Parallel Runner:**  
-    
-- In the pom.xml file, it looks for the POM in the current directory and assign the value of "testingParalel.xml"  
-    
-- This would be as follows:  
+#### Or you can create a new folder inside it :
+
+| Version 3.3.0.0                        | Version 3.3.0.1 or newer                           |
+|:---------------------------------------|:---------------------------------------------------|
+| Given body new_folder/name_file.json   | Given body jsons/bodies/new_folder/name_file.json  |
+
+
+
+---------------------------------------------------------------------------------
+### I. SET
+
+
+#### If you need to modify the value of any attribute in the body, you can use the Step "set value <any> of key <any> in body <any>".
+#### We don't need the Step "body \S+" in our scenario because this step accesses the entire JSON file and also makes the necessary modifications.
+#### In this case, it requires three parameters: the value to be assigned, the name of the attribute that will take the value of the first parameter, and the path with the name of the JSON file.
+
+### For example
+
+         And set value 15 of key tags[1].id in body jsons/bodies/body2.json
+
+---------------------------------------------------------------------------------
+
+### II. DELETE
+
+####Now, if you need to remove an attribute from the body, you can use Step "delete keyValue <any> in body <any>", This one requires only two parameters: the attribute name and the name of the JSON file containing the request.
+
+### For example
+
+           
+           And delete keyValue tags[0].id in body jsons/bodies/body2.json
+           
+      
+---------------------------------------------------------------------------------
+
+- ## <a id="title_http_method"></a>HTTP Method
+
+#### The HTTP Methods supported by steps are : GET | POST | PUT | PATCH | DELETE
+
+### For example
+
+     When execute method POST
+
+---------------------------------------------------------------------------------
+
+- # <a id="title_assertions"></a>Assertions
+
+## I. <a id="title_status_code"></a>Status Code
+
+#### The step to assert the HTTP response code is as follows :
+
+         the status code should be <number>
+
+### For example
+
+         Then the status code should be 200
+
+#### If the HTTP response code is anything other than what is expected, this assertion will result in the test failing.
+
+## II. <a id="mi-seccion"></a>JSON
+
+#### You can make assertions on any attribute of the obtained response, whether it's integer, float, double, string, or boolean value by referencing it by its name :
+
+### For example
+
+      And response should be name = Rick Sanchez
+
+#### Another way to reference it is by prepending "$." before the attribute name :
+
+       And response should be $.status = Alive
+
+
+#### The following step, allows for validations based on equality or containing a value that matches the response obtained based on the provided parameter.
+
+      And verify the response [^\s].+ 'equals' [^\s].*
+      And verify the response [^\s].+ 'contains' [^\s].*
+
+### For example
+      And verify the response name 'contains' dog
+
+### <a id="title_schema"></a>Schemas
+
 ```
-        <runner>testngParallel.xml</runner>
-```        
+├── automation-reestructuracion-gateway
+│   │   
+│   ├── src
+│   │   ├── main
+│   ├── java
+│   │     └── ...
+│   ├── resources 
+│   │     └── ...
+│   ├── test
+│   │     ├── resources
+│   │     │   └── features
+│   │     │   └── files
+│   │     │   └── jsons
+│   │               └── ...
+│   │               └── ...
+│   │               └── ...
+│   │               └── ...
+│   │               └── schemas
+|
+│        
+```
+
+#### You can create a schema file with ".json" extension at the directory mentioned above (jsons/schemas folder).
+
+### For example
+
+| Version 3.3.0.0                         | Version 3.3.0.1 or newer                          |
+|:----------------------------------------|:--------------------------------------------------|
+| And validate schema character.json      | And validate schema jsons/schemas/character.json  |
+
+## <a id="title_step_glosary"></a>Steps Glossary
+
+| ENGLISH                                                              | SPANISH                                                                 |
+|:---------------------------------------------------------------------|:------------------------------------------------------------------------|
+| add query parameter '\<any>' = \<any>                                | agregar parametro a la query '\<any>' = \<any>                          |
+| base url \S+                                                         | base url \S+                                                            |
+| body \S+                                                             | body \S+                                                                |
+| call \S+.feature[@:\$]\S+                                            | invocar \S+.feature[@:\$]\S+                                            |
+| create connection database '\<any>'                                  | crear conexion a la base de datos '\<any>'                              |
+| define [^\d]\S+ = \S+                                                | definir  [^\d]\S+ = \S+                                                 |
+| delete keyValue \<any> in body \<any>                                | eliminar clave \<any> en el  body \<any>                                |
+| endpoint \S+                                                         | endpoint \S+                                                            |
+| execute method GET l POST l PUT l PATCH l DELETE                     | ejecutar metodo GET l POST l PUT l PATCH l DELETE                       |
+| execute query '\<any>'                                               | ejecutar query '\<any>'                                                 |
+| header \S+ = \S+                                                     | header \S+ = \S+                                                        |
+| And I save from result JSON the attribute <any> on variable <any>    | guardo del resultado JSON el atributo <any> en la variable \<any>       |
+| param \S+ = \S+                                                      | param \S+ = \S+                                                         |
+| response should be [^\s].+ = [^\s].*                                 | la respuesta debe ser [^\s].+ = [^\s].*                                 |
+| response should be [^\s].+ contains [^\s].*                          | la respuesta debe ser [^\s].+ contiene [^\s].*                          |
+| set value \<any> of key \<any> in body \<any>                        | setear el valor \<any> de la clave \<any> en el body \<any>             |
+| the status code should be \<number>                                  | el status code debe ser \<number>                                       |
+| validate field '\<any>' = \<any>                                     | validar el campo '\<any>' = \<any>                                      |
+| validate schema \<string>                                            | validar schema \<string>                                                |
+| verify the response ([^\\s].+) '(equals &#124; contains)' ([^\\s].*) | verificar la respuesta ([^\\s].+) '(equals &#124; contains)' ([^\\s].*) |
+
+
