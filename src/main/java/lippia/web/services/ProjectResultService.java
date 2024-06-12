@@ -1,14 +1,15 @@
 package lippia.web.services;
+import com.crowdar.core.actions.WebActionManager;
 import org.testng.Assert;
 
-import static com.crowdar.core.actions.ActionManager.getText;
-import static com.crowdar.core.actions.ActionManager.waitVisibility;
+import static com.crowdar.core.actions.ActionManager.*;
 import static lippia.web.constants.ClockifyConstants.*;
 
 public class ProjectResultService {
 
     public static void validateProjectCreated(){
         waitVisibility(ALERT_CONFIRM_CREATE_PROJECT);
-        Assert.assertTrue(getText(ALERT_CONFIRM_CREATE_PROJECT).contains("Se ha creado el Proyecto"));
+        String popUp = WebActionManager.getAttribute(ALERT_CONFIRM_CREATE_PROJECT, "textContent");
+        Assert.assertTrue(popUp != null && popUp.contains("has been created"));
     }
 }

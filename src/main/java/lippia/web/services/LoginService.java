@@ -9,28 +9,27 @@ import static com.crowdar.core.actions.WebActionManager.navigateTo;
 
 public class LoginService extends ActionManager {
 
-    public static void navegarWeb() {
+    public static void navigateWeb() {
         navigateTo(PropertyManager.getProperty("web.base.url"));
     }
 
     public static void clickTextLogin() {
-        click(TEXT_LOGIN);
+        waitClickable(TEXT_LOGIN).click();
     }
 
     public static void sendLoginCredential() {
-        setInput(INPUT_EMAIL, "albagaitan.fsk@gmail.com");
-        setInput(INPUT_PASSWORD,"alba1234");
-    }
-    public static void clickButtonLogin() {
-        click(BUTTON_LOGIN);
-    }
-    public static void clickAlert(){
-        click(TEXT_ALERT);
+        setInput(INPUT_EMAIL, "pamela.s.qa@gmail.com");
+        setInput(INPUT_PASSWORD, "Pruebas2024");
     }
 
-    public static void clickButtonLogout(){
-        click(BUTTON_PERFIL);
-        click(BUTTON_LOGOUT);
+    public static void clickButtonLogin() {
+        waitClickable(BUTTON_LOGIN).click();
+    }
+
+
+    public static void clickButtonLogout() {
+        waitClickable(BUTTON_PROFILE).click();
+        waitClickable(BUTTON_LOGOUT).click();
     }
 
 }

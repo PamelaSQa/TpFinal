@@ -6,8 +6,9 @@ import static lippia.web.constants.ClockifyConstants.*;
 
 public class WorkspaceResultService extends ActionManager {
 
-    public static void validateWorkspaceCreation() {
-        Assert.assertTrue(getText(ALERT_CONFIRM_CREATE_WORSKSPACE).contains("Se ha creado el espacio de trabajo"));
-   }
+    public static void validateTextHasBeenCreated() {
+        waitPresence(ALERT_TEXT_CONFIRM);
+        Assert.assertTrue(getText(ALERT_TEXT_CONFIRM).contains("has been created"));
+    }
 
 }

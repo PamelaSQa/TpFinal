@@ -9,8 +9,9 @@ import org.testng.Assert;
 
 public class LoginResultsService extends ActionManager {
     public static void validateMainPage() {
+        waitVisibility(INPUT_PLACEHOLDER);
         String placeholderText = getAttribute(INPUT_PLACEHOLDER, "placeholder");
-        Assert.assertTrue(placeholderText.contains("¿En qué estás trabajando?"));
+        Assert.assertTrue(placeholderText.contains("What are you working on?"));
     }
 
     public static void validateCloseSession(){

@@ -13,23 +13,23 @@ import static lippia.web.services.LoginService.*;
 public class LoginSteps extends PageSteps {
 
     @Given("^the client is on the login page$")
-    public void home(){
-        navegarWeb();
+    public void home() {
+        navigateWeb();
     }
 
     @When("click on Log in manually")
-    public void clickTextLoginManually(){
+    public void clickTextLoginManually() {
         clickTextLogin();
     }
+
     @And("enter email and password")
-    public void enterEmailAndPassword(){
+    public void enterEmailAndPassword() {
         sendLoginCredential();
         clickButtonLogin();
     }
 
-    @Then("the user view the main dashboard")
-    public void validateMainDashboard(){
-        clickAlert();
+    @And("the user view the main dashboard")
+    public void validateMainDashboard() {
         validateMainPage();
     }
 

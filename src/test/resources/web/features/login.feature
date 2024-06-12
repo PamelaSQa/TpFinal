@@ -1,4 +1,4 @@
-
+@Smoke
 Feature: Login
 
   Scenario: login successfully

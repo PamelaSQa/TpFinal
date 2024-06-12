@@ -1,27 +1,27 @@
 package lippia.web.services;
 
 import com.crowdar.core.actions.ActionManager;
-import com.google.api.client.util.Sleeper;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.Random;
+
 import static lippia.web.constants.ClockifyConstants.*;
 
 public class WorkspaceService extends ActionManager {
 
     public static void clickButtonWorkspace() {
-        getElement(BUTTON_WORKSPACE).click();
-
+        waitClickable(BUTTON_WORKSPACE).click();
     }
 
     public static void clickButtonManage() {
-        click(TEXT_MANAGE);
+        waitClickable(TEXT_MANAGE).click();
     }
 
     public static void buttonCreateNewWorkspace() {
-        click(TEXT_BUTTON_CREATE_WORKSPACE);
+        waitClickable(TEXT_BUTTON_CREATE_WORKSPACE).click();
     }
+
     public static String generateRandomName() {
         int length = new Random().nextInt(10) + 4;
         return new Random().ints(length, 'a', 'z' + 4)
@@ -29,13 +29,15 @@ public class WorkspaceService extends ActionManager {
                 .toString();
     }
 
-    public static void sendNameWorkspaceRandom(){
-        String randomName = generateRandomName();
-        setInput(INPUT_NAME_WORKSPACE, randomName);
+    public static void sendNameWorkspaceRandom() {
+        String randomName = "New Workspace: " + generateRandomName();
+        waitClickable(INPUT_NAME_WORKSPACE).click();
+        setInput(INPUT_NAME_WORKSPACE, randomName, true, true);
 
     }
-    public static void clickButtonCreate()  {
-        click(BUTTON_CREATE);
+
+    public static void clickButtonCreate() {
+        waitClickable(BUTTON_CREATE).click();
     }
 
     public static void selectWorkspace() {
@@ -43,21 +45,24 @@ public class WorkspaceService extends ActionManager {
 
         WebElement elementToClick = null;
         for (WebElement element : workspaceElements) {
-            if (!element.getText().contains("Activo")) {
+            if (!element.getText().contains("Active")) {
                 elementToClick = element;
                 break;
             }
         }
     }
 
-    public static void clickIconx(){
+    public static void clickIconx() {
         waitClickable(ICON_DELETE_WORKSPACE).click();
     }
-    public static void deleteWorkspace(){
+
+    public static void deleteWorkspace() {
         selectWorkspace();
         clickIconx();
-        setInput(INPUT_DELETE_WORKSPACE,"DELETE");
-        click(BUTTON_DELETE_WORKSPACE);
+        waitClickable(INPUT_DELETE_WORKSPACE).click();
+        setInput(INPUT_DELETE_WORKSPACE, "DELETE");
+        waitClickable(BUTTON_DELETE_WORKSPACE).click();
+
     }
 }
 

@@ -40,7 +40,7 @@
 
 		<!-- client project custom properties -->
 		<!--	<web-app.url>https://app.clockify.me/en/login</web-app.url>-->
-		<web-app.url>https://google.com/</web-app.url>
+		<web-app.url>https://app.clockify.me/en/login</web-app.url>
 
         </properties>
         <profiles>
